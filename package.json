@@ -5,18 +5,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.4.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5",
     "@radix-ui/react-alert-dialog": "latest",
     "@radix-ui/react-tabs": "latest",
     "recharts": "latest",
     "lucide-react": "latest",
     "lodash": "latest",
     "papaparse": "latest",
-    "xlsx": "latest"
+    "xlsx": "latest",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8"
   }
 }
