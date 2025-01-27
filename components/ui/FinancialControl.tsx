@@ -135,4 +135,97 @@ const FinancialControl = () => {
 
       <Tabs defaultValue="add" className="w-full">
         <TabsList>
-          <TabsTrigger
+          <TabsTrigger value="add">Nova Transação</TabsTrigger>
+          <TabsTrigger value="list">Histórico</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="add">
+          <form onSubmit={handleAddTransaction} className="space-y-4 bg-white p-6 rounded-lg shadow">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Tipo
+              </label>
+              <select
+                value={newTransaction.type}
+                onChange={e => setNewTransaction({ ...newTransaction, type: e.target.value as 'income' | 'expense' })}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option value="income">Entrada</option>
+                <option value="expense">Saída</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Descrição
+              </label>
+              <input
+                type="text"
+                required
+                value={newTransaction.description || ''}
+                onChange={e => setNewTransaction({ ...newTransaction, description: e.target.value })}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Valor
+              </label>
+              <input
+                type="number"
+                required
+                min="0"
+                step="0.01"
+                value={newTransaction.amount || ''}
+                onChange={e => setNewTransaction({ ...newTransaction, amount: parseFloat(e.target.value) })}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Adicionar
+            </button>
+          </form>
+        </TabsContent>
+
+        <TabsContent value="list">
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Histórico de Transações</h3>
+            <div className="space-y-4">
+              {transactions.map(transaction => (
+                <div
+                  key={transaction.id}
+                  className="flex items-center justify-between p-4 border rounded-md"
+                >
+                  <div>
+                    <p className="font-medium">{transaction.description}</p>
+                    <p className="text-sm text-gray-500">
+                      {new Date(transaction.date).toLocaleDateString()}
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <span className={transaction.type === 'income' ? 'text-green-600' : 'text-red-600'}>
+                      R$ {transaction.amount.toFixed(2)}
+                    </span>
+                    <button
+                      onClick={() => deleteTransaction(transaction.id)}
+                      className="text-red-600 hover:text-red-800"
+                    >
+                      Excluir
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+};
+
+export default FinancialControl;
