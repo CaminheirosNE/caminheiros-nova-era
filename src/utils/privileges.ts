@@ -8,7 +8,7 @@ export const checkPrivilege = (
   const privilege = privileges.find(
     p => p.userId === userId && p.screenId === screenId
   );
-  return privilege?.level || 3; // Default to view access (level 3)
+  return privilege?.level || 3; // Default to view access
 };
 
 export const hasAccess = (
@@ -58,23 +58,12 @@ export const getUserPrivileges = (
   return privileges.filter(p => p.userId === userId);
 };
 
-export const updatePrivilege = (
-  privileges: UserPrivilege[],
-  userId: string,
-  screenId: string,
-  newLevel: 1 | 2 | 3 | 4
-): UserPrivilege[] => {
-  const index = privileges.findIndex(
-    p => p.userId === userId && p.screenId === screenId
-  );
-
-  if (index === -1) {
-    return [...privileges, { userId, screenId, level: newLevel }];
-  }
-
-  return [
-    ...privileges.slice(0, index),
-    { ...privileges[index], level: newLevel },
-    ...privileges.slice(index + 1)
-  ];
+export default {
+  checkPrivilege,
+  hasAccess,
+  isAdmin,
+  canEdit,
+  canView,
+  getScreenPrivileges,
+  getUserPrivileges
 };
