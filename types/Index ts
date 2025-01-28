@@ -1,3 +1,4 @@
+// src/types/index.ts
 export interface Member {
   id: string;
   name: string;
@@ -56,24 +57,4 @@ export interface UserPrivilege {
   userId: string;
   screenId: string;
   level: 1 | 2 | 3 | 4; // 1: Admin, 2: No Access, 3: View, 4: Edit
-}
-
-export interface Alert {
-  type: 'success' | 'error' | 'info' | 'warning';
-  message: string;
-  duration?: number;
-}
-
-export interface FilterOptions {
-  startDate?: string;
-  endDate?: string;
-  type?: string;
-  status?: string;
-  search?: string;
-}
-
-export interface PaginationOptions {
-  page: number;
-  limit: number;
-  total: number;
 }
