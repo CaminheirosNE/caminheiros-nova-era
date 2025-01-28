@@ -2,15 +2,15 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import MemberRegistration from './components/MemberRegistration';
-import TherapyScheduling from './components/TherapyScheduling';
-import TicketCall from './components/TicketCall';
-import FinancialControl from './components/FinancialControl';
-import Reports from './components/Reports';
-import EventsControl from './components/EventsControl';
-import Birthdays from './components/Birthdays';
-import MonthlyPayments from './components/MonthlyPayments';
+import Layout from '../../componentes/Layout';
+import MemberRegistration from '../../componentes/RegistroDeMembro';
+import TherapyScheduling from '../../componentes/AgendamentoDeTerapia';
+import TicketCall from '../../componentes/ChamadaDeIngresso';
+import FinancialControl from '../../componentes/ControleFinanceiro';
+import Reports from '../../componentes/Relatorios';
+import EventsControl from '../../componentes/EventosControl';
+import Birthdays from '../../componentes/Aniversarios';
+import MonthlyPayments from '../../componentes/PagamentosMensais';
 
 export default function Home() {
   return (
