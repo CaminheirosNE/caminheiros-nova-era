@@ -1,14 +1,16 @@
+'use client';
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from '../components/Layout';
-import MemberRegistration from '../components/MemberRegistration';
-import TherapyScheduling from '../components/TherapyScheduling';
-import TicketCall from '../components/TicketCall';
-import FinancialControl from '../components/FinancialControl';
-import Reports from '../components/Reports';
-import EventsControl from '../components/EventsControl';
-import Birthdays from '../components/Birthdays';
-import MonthlyPayments from '../components/MonthlyPayments';
+import Layout from './components/Layout';
+import MemberRegistration from './components/MemberRegistration';
+import TherapyScheduling from './components/TherapyScheduling';
+import TicketCall from './components/TicketCall';
+import FinancialControl from './components/FinancialControl';
+import Reports from './components/Reports';
+import EventsControl from './components/EventsControl';
+import Birthdays from './components/Birthdays';
+import MonthlyPayments from './components/MonthlyPayments';
 
 export default function Home() {
   return (
