@@ -1,17 +1,30 @@
 {
   "name": "casa-espiritualista",
   "version": "0.1.0",
-  "lockfileVersion": 3,
-  "requires": true,
-  "packages": {
-    "": {
-      "name": "casa-espiritualista",
-      "version": "0.1.0",
-      "dependencies": {
-        "next": "latest",
-        "react": "latest",
-        "react-dom": "latest"
-      }
-    }
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5",
+    "@radix-ui/react-alert-dialog": "latest",
+    "@radix-ui/react-tabs": "latest",
+    "recharts": "latest",
+    "lucide-react": "latest",
+    "lodash": "latest",
+    "papaparse": "latest",
+    "xlsx": "latest",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8"
   }
 }
