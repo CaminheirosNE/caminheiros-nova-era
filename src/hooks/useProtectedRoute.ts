@@ -1,35 +1,30 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { checkPrivilege } from '../utils/privileges';
-import { UserPrivilege } from '../types';
+import { checkPrivilege } from '../../utils/privileges';
+import type { UserPrivilege } from '../../types';
 
-export const useProtectedRoute = (
-  screenId: string,
-  requiredLevel: number = 3
-): void => {
+interface UseProtectedRouteProps {
+  privileges: UserPrivilege[];
+  userId: string;
+  screenId: string;
+  requiredLevel: number;
+}
+
+export const useProtectedRoute = ({
+  privileges,
+  userId,
+  screenId,
+  requiredLevel
+}: UseProtectedRouteProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    const checkAccess = () => {
-      const userId = localStorage.getItem('userId');
-      if (!userId) {
-        router.push('/login');
-        return;
-      }
-
-      const privileges: UserPrivilege[] = JSON.parse(
-        localStorage.getItem('privileges') || '[]'
-      );
-
-      const userLevel = checkPrivilege(privileges, userId, screenId);
-
-      if (userLevel < requiredLevel) {
-        router.push('/unauthorized');
-      }
-    };
-
-    checkAccess();
-  }, [screenId, requiredLevel, router]);
+    const userLevel = checkPrivilege(privileges, userId, screenId);
+    
+    if (userLevel > requiredLevel) {
+      router.push('/acesso-negado'); // Redireciona para página de acesso negado
+    }
+  }, [privileges, userId, screenId, requiredLevel, router]);
 };
 
 export default useProtectedRoute;
