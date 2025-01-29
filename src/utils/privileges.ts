@@ -1,4 +1,4 @@
-import { UserPrivilege } from '../types';
+import { UserPrivilege, PrivilegeLevel } from '../types';
 
 export const checkPrivilege = (
   privileges: UserPrivilege[],
@@ -8,7 +8,7 @@ export const checkPrivilege = (
   const privilege = privileges.find(
     p => p.userId === userId && p.screenId === screenId
   );
-  return privilege?.level || 3; // Default to view access
+  return privilege?.level || PrivilegeLevel.NO_ACCESS;
 };
 
 export const hasAccess = (
@@ -18,14 +18,14 @@ export const hasAccess = (
   requiredLevel: number
 ): boolean => {
   const userLevel = checkPrivilege(privileges, userId, screenId);
-  return userLevel >= requiredLevel;
+  return userLevel <= requiredLevel; // Menor número = maior privilégio
 };
 
 export const isAdmin = (
   privileges: UserPrivilege[],
   userId: string
 ): boolean => {
-  return privileges.some(p => p.userId === userId && p.level === 1);
+  return privileges.some(p => p.userId === userId && p.level === PrivilegeLevel.ADMIN);
 };
 
 export const canEdit = (
@@ -33,7 +33,7 @@ export const canEdit = (
   userId: string,
   screenId: string
 ): boolean => {
-  return hasAccess(privileges, userId, screenId, 4);
+  return hasAccess(privileges, userId, screenId, PrivilegeLevel.EDITOR);
 };
 
 export const canView = (
@@ -41,7 +41,7 @@ export const canView = (
   userId: string,
   screenId: string
 ): boolean => {
-  return hasAccess(privileges, userId, screenId, 3);
+  return hasAccess(privileges, userId, screenId, PrivilegeLevel.VIEWER);
 };
 
 export const getScreenPrivileges = (
