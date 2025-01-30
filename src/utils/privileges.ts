@@ -1,4 +1,4 @@
-import { UserPrivilege, PrivilegeLevel } from '../types';
+import { UserPrivilege, PrivilegeLevel } from '@/types';
 
 export const checkPrivilege = (
   privileges: UserPrivilege[],
@@ -18,7 +18,7 @@ export const hasAccess = (
   requiredLevel: number
 ): boolean => {
   const userLevel = checkPrivilege(privileges, userId, screenId);
-  return userLevel <= requiredLevel; // Menor número = maior privilégio
+  return userLevel <= requiredLevel;
 };
 
 export const isAdmin = (
