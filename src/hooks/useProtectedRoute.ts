@@ -1,4 +1,10 @@
-"use client";
+import { useRouter } from 'next/navigation';
+import { checkPrivilege } from '@/utils/privileges';
+import type { UserPrivilege } from '@/types/UserPrivilege';
+
+interface UseProtectedRouteProps {
+  privilegios: UserPrivilege[];
+}
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
