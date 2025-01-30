@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { checkPrivilege } from '../utils/privileges';
-import type { UserPrivilege } from '../types';
+
+interface UserPrivilege {
+  userId: string;
+  screenId: string;
+  level: number;
+}
 
 interface UseProtectedRouteProps {
   privileges: UserPrivilege[];
@@ -9,6 +13,17 @@ interface UseProtectedRouteProps {
   screenId: string;
   requiredLevel: number;
 }
+
+const checkPrivilege = (
+  privileges: UserPrivilege[],
+  userId: string,
+  screenId: string
+): number => {
+  const privilege = privileges.find(
+    p => p.userId === userId && p.screenId === screenId
+  );
+  return privilege?.level || 3;
+};
 
 export const useProtectedRoute = ({
   privileges,
