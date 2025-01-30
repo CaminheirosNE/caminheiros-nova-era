@@ -1,14 +1,14 @@
-export interface UserPrivilege {
-  userId: string;
-  screenId: string;
-  level: number;
-}
-
 export enum PrivilegeLevel {
   ADMIN = 1,
   EDITOR = 2,
   VIEWER = 3,
   NO_ACCESS = 4
+}
+
+export interface UserPrivilege {
+  userId: string;
+  screenId: string;
+  level: number;
 }
 
 export interface ScreenAccess {
@@ -22,3 +22,6 @@ export interface UserPrivilegeCheck {
   currentLevel: number;
   requiredLevel: number;
 }
+
+// Exporta tudo do arquivo UserPrivilege.ts
+export * from './UserPrivilege';
